@@ -1,8 +1,8 @@
 install:
-	uv pip install --upgrade pip && uv pip install -r requirements.txt
+	uv pip install --upgrade pip && uv pip install --editable .[dev]
 
 test:
-	pytest
+	uv run pytest
 
 lint:
 	uv run flake8
