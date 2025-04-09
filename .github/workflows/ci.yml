@@ -20,8 +20,8 @@ jobs:
       - name: Install uv and dependencies
         run: |
           curl -Ls https://astral.sh/uv/install.sh | sh
-          uv pip install pyyaml
-          uv pip install pytest flake8
+          uv pip install --system pyyaml
+          uv pip install --system pytest flake8
 
       - name: Run lint
         run: make lint
