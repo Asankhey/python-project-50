@@ -1,7 +1,11 @@
+
 name: Python CI
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -10,22 +14,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: 3.10
 
-      - name: Install uv and dependencies
+      - name: Install dependencies
         run: |
-          curl -Ls https://astral.sh/uv/install.sh | sh
-          uv pip install --system --editable .
-          uv pip install --system pyyaml
-          uv pip install --system pytest flake8
+          uv pip install --upgrade pip
+          uv pip install -r requirements.txt
 
-      - name: Run lint
+      - name: Run tests and measure coverage
+        run: |
+          make coverage
+
+      - name: Upload coverage to SonarQube
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          organization: "your-org"  # Замените на ваш Org в SonarQube
+          projectKey: "your-project"  # Замените на ваш ключ проекта в SonarQube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Используйте секрет для вашего токена SonarQube
+
+      - name: Lint code
         run: make lint
 
-      - name: Run tests
-        run: make test

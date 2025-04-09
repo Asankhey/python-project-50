@@ -6,3 +6,8 @@ test:
 
 lint:
 	uv run flake8
+
+coverage:
+	coverage run -m pytest
+	coverage report
+	coverage html
