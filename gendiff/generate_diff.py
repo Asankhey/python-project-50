@@ -15,6 +15,10 @@ def read_data(filepath):
 
 
 def generate_diff(file_path1, file_path2):
+    # Преобразуем пути в абсолютные
+    file_path1 = os.path.abspath(file_path1)
+    file_path2 = os.path.abspath(file_path2)
+
     data1 = read_data(file_path1)
     data2 = read_data(file_path2)
     keys = sorted(set(data1.keys()) | set(data2.keys()))
