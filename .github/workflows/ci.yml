@@ -2,11 +2,9 @@ name: Python CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
@@ -21,30 +19,31 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Cache Python dependencies
-        uses: actions/cache@v2
+      - name: Cache dependencies
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python-
+            ${{ runner.os }}-pip
 
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests and measure coverage
-        run: |
-          make coverage
+      - name: Run tests with coverage
+        run: make coverage
 
-      - name: Upload coverage to SonarQube
+      - name: Upload coverage to SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1
         with:
-          organization: 'Asankhey'  # Замените на ваш Org в SonarQube
-          projectKey: 'python-project-50'  # Замените на ваш ключ проекта в SonarQube
+          args: >
+            -Dsonar.organization=Asankhey
+            -Dsonar.projectKey=python-project-50
+            -Dsonar.python.version=3.10
         env:
-          SONAR_TOKEN: \${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Lint code
+      - name: Run linter
         run: make lint
