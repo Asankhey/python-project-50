@@ -34,8 +34,8 @@ jobs:
       - name: Upload coverage to SonarQube
         uses: sonarsource/sonarcloud-github-action@v1
         with:
-          organization: "your-org"  # Замените на ваш Org в SonarQube
-          projectKey: "your-project"  # Замените на ваш ключ проекта в SonarQube
+          organization: "Asankhey"  # Замените на ваш Org в SonarQube
+          projectKey: "Asankhey_python-project-50"  # Замените на ваш ключ проекта в SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Используйте секрет для вашего токена SonarQube
 
