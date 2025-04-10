@@ -42,6 +42,7 @@ jobs:
             -Dsonar.organization=Asankhey
             -Dsonar.projectKey=python-project-50
             -Dsonar.python.version=3.10
+            -Dsonar.branch.name=main
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
