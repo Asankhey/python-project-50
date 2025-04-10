@@ -1,7 +1,7 @@
 import json
 import yaml
 import os
-
+from gendiff.formatters.stylish import format_stylish
 
 def read_data(filepath):
     _, ext = os.path.splitext(filepath)
@@ -13,27 +13,29 @@ def read_data(filepath):
         else:
             raise ValueError(f'Unsupported file format: {ext}')
 
-
-def generate_diff(file_path1, file_path2):
-    # Преобразуем пути в абсолютные
-    file_path1 = os.path.abspath(file_path1)
-    file_path2 = os.path.abspath(file_path2)
-
-    data1 = read_data(file_path1)
-    data2 = read_data(file_path2)
+def build_diff(data1, data2):
     keys = sorted(set(data1.keys()) | set(data2.keys()))
-
-    result = []
+    diff = {}
     for key in keys:
         if key in data1 and key in data2:
-            if data1[key] == data2[key]:
-                result.append(f"  {key}: {data1[key]}")
+            val1 = data1[key]
+            val2 = data2[key]
+            if isinstance(val1, dict) and isinstance(val2, dict):
+                diff[key] = ('nested', build_diff(val1, val2))
+            elif val1 == val2:
+                diff[key] = ('unchanged', val1)
             else:
-                result.append(f"- {key}: {data1[key]}")
-                result.append(f"+ {key}: {data2[key]}")
+                diff[key] = ('updated', val1, val2)
         elif key in data1:
-            result.append(f"- {key}: {data1[key]}")
+            diff[key] = ('removed', data1[key])
         elif key in data2:
-            result.append(f"+ {key}: {data2[key]}")
+            diff[key] = ('added', data2[key])
+    return diff
 
-    return "\n".join(result)
+def generate_diff(file_path1, file_path2):
+    file_path1 = os.path.abspath(file_path1)
+    file_path2 = os.path.abspath(file_path2)
+    data1 = read_data(file_path1)
+    data2 = read_data(file_path2)
+    diff = build_diff(data1, data2)
+    return format_stylish(diff)
