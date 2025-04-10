@@ -22,7 +22,7 @@ jobs:
           python-version: '3.10'
 
       - name: Cache Python dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # Обновлено на v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
@@ -44,7 +44,7 @@ jobs:
           organization: 'Asankhey'  # Замените на ваш Org в SonarQube
           projectKey: 'python-project-50'  # Замените на ваш ключ проекта в SonarQube
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Используйте секрет для вашего токена SonarQube
+          SONAR_TOKEN: \${{ secrets.SONAR_TOKEN }}
 
       - name: Lint code
         run: make lint
