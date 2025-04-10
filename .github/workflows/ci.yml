@@ -1,4 +1,3 @@
-echo "
 name: Python CI
 
 on:
@@ -45,8 +44,7 @@ jobs:
           organization: 'Asankhey'  # Замените на ваш Org в SonarQube
           projectKey: 'python-project-50'  # Замените на ваш ключ проекта в SonarQube
         env:
-          SONAR_TOKEN: \${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Используйте секрет для вашего токена SonarQube
 
       - name: Lint code
         run: make lint
-" > .github/workflows/ci.yml
