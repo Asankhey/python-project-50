@@ -1,7 +1,8 @@
 import json
 import yaml
 import os
-from gendiff.formatters.stylish import format_stylish
+from gendiff.formatters import get_formatter
+
 
 def read_data(filepath):
     _, ext = os.path.splitext(filepath)
@@ -12,6 +13,7 @@ def read_data(filepath):
             return json.load(file)
         else:
             raise ValueError(f'Unsupported file format: {ext}')
+
 
 def build_diff(data1, data2):
     keys = sorted(set(data1.keys()) | set(data2.keys()))
@@ -32,10 +34,12 @@ def build_diff(data1, data2):
             diff[key] = ('added', data2[key])
     return diff
 
-def generate_diff(file_path1, file_path2):
+
+def generate_diff(file_path1, file_path2, formatter='stylish'):
     file_path1 = os.path.abspath(file_path1)
     file_path2 = os.path.abspath(file_path2)
     data1 = read_data(file_path1)
     data2 = read_data(file_path2)
     diff = build_diff(data1, data2)
-    return format_stylish(diff)
+    formatter_func = get_formatter(formatter)
+    return formatter_func(diff)
