@@ -30,21 +30,22 @@ def format_stylish(diff, depth=1):
     lines = []
 
     for key in sorted(diff.keys()):
-        node_type, data = diff[key]
+        entry = diff[key]
+        node_type = entry[0]
 
         if node_type == "nested":
-            children = format_stylish(data, depth + 1)
+            children = format_stylish(entry[1], depth + 1)
             lines.append(f"{INDENT * depth}{key}: {children}")
         elif node_type == "added":
-            lines.append(format_node(key, data, "+", depth))
+            lines.append(format_node(key, entry[1], "+", depth))
         elif node_type == "removed":
-            lines.append(format_node(key, data, "-", depth))
-        elif node_type == "changed":
-            old, new = data
+            lines.append(format_node(key, entry[1], "-", depth))
+        elif node_type == "updated":
+            old, new = entry[1], entry[2]
             lines.append(format_node(key, old, "-", depth))
             lines.append(format_node(key, new, "+", depth))
         elif node_type == "unchanged":
-            lines.append(format_node(key, data, " ", depth))
+            lines.append(format_node(key, entry[1], " ", depth))
 
     result = "\n".join(lines)
     return f"{{\n{result}\n{INDENT * (depth - 1)}}}"
