@@ -1,14 +1,8 @@
-# macOS
 .DS_Store
-
-# Python
 __pycache__/
 *.pyc
-
-# Обработка виртуальных окружений
 .venv/
-
-# Дополнительные игнорируемые файлы
+venv/
+.pytest_cache/
 *.log
-*.lock
 *.db

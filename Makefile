@@ -1,13 +1,29 @@
-install:
-	uv pip install --upgrade pip && uv pip install --editable .[dev]
+build:
+	poetry build
 
-test:
-	uv run pytest
+publish:
+	poetry publish --dry-run
+
+package-install:
+	python3 -m pip install --user dist/*.whl
+
+package-reinstall:
+	python3 -m pip install --user dist/*.whl --force-reinstall
+
+package-uninstall:
+	python3 -m pip uninstall hexlet-code
+
+install:
+	poetry install
+
+start:
+	gendiff
 
 lint:
-	uv run flake8
+	poetry run flake8 gendiff
 
-coverage:
-	coverage run -m pytest
-	coverage report
-	coverage html
+test:
+	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=. --cov-report=xml
