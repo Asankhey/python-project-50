@@ -1,6 +1,7 @@
 from gendiff.generate_diff import generate_diff
 from pathlib import Path
 
+
 def test_flat_yaml_diff():
     result = generate_diff(
         'tests/test_data/file1.yml',
