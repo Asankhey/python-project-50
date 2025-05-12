@@ -17,6 +17,7 @@ Supports JSON and YAML formats and outputs results in `stylish`, `plain`, or `js
 gendiff file1.json file2.yaml
 gendiff --format plain file1.yaml file2.yaml
 gendiff --format json file1.json file2.json
+```
 
 ## Demonstration
 
