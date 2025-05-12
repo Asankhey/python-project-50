@@ -18,6 +18,26 @@ gendiff file1.json file2.yaml
 gendiff --format plain file1.yaml file2.yaml
 gendiff --format json file1.json file2.json
 
-## Demo
+## Demonstration
 
-[![asciicast](https://asciinema.org/a/YLoy8kE0Vz5TZ5HYvi9uDLtIo.svg)](https://asciinema.org/a/YLoy8kE0Vz5TZ5HYvi9uDLtIo)
+### Stylish format
+
+#### Flat files
+
+[![asciicast](https://asciinema.org/a/rjPwgxxbeTEZfjnvZ4gLp4d0M.svg)](https://asciinema.org/a/rjPwgxxbeTEZfjnvZ4gLp4d0M)
+
+#### Nested files
+
+[![asciicast](https://asciinema.org/a/gcKKCJnkV0gpbuaCFmxxJTUiL.svg)](https://asciinema.org/a/gcKKCJnkV0gpbuaCFmxxJTUiL)
+
+### Plain format
+
+[![asciicast](https://asciinema.org/a/828zsBE5jNcLDdfI5iEV9hzP7.svg)](https://asciinema.org/a/828zsBE5jNcLDdfI5iEV9hzP7)
+
+### JSON format
+
+[![asciicast](https://asciinema.org/a/WF2MQYmnCAhDdAPpuI2b0msEe.svg)](https://asciinema.org/a/WF2MQYmnCAhDdAPpuI2b0msEe)
+
+### Help
+
+[![asciicast](https://asciinema.org/a/PqJFng6xX6Y1Up8g8z7pugcSs.svg)](https://asciinema.org/a/PqJFng6xX6Y1Up8g8z7pugcSs)
