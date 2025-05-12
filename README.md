@@ -22,17 +22,20 @@ gendiff --format json file1.json file2.json
 
 ### Stylish format
 
-#### Flat files  
-[![asciicast](https://asciinema.org/a/rjPwgxxbeTEZfjnvZ4gLp4d0M.svg)](https://asciinema.org/a/rjPwgxxbeTEZfjnvZ4gLp4d0M)
+#### Comparison of 2 flat files:
+[![asciicast](https://asciinema.org/a/rjPwgxxbeTEZfjnvZ4gLp4d8M.svg)](https://asciinema.org/a/rjPwgxxbeTEZfjnvZ4gLp4d8M)
 
-#### Nested files  
-[![asciicast](https://asciinema.org/a/gcKKCJnkV0gpbuaCFmxxJTUiL.svg)](https://asciinema.org/a/gcKKCJnkV0gpbuaCFmxxJTUiL)
+#### Comparison of 2 nested files:
+[![asciicast](https://asciinema.org/a/gcKKCJnkV0gpbuaCFmxxJTU1L.svg)](https://asciinema.org/a/gcKKCJnkV0gpbuaCFmxxJTU1L)
 
-### Plain format  
-[![asciicast](https://asciinema.org/a/828zsBE5jNcLDdfI5iEV9hzP7.svg)](https://asciinema.org/a/828zsBE5jNcLDdfI5iEV9hzP7)
+### Plain format
 
-### JSON format  
+[![asciicast](https://asciinema.org/a/828zsBE5jNcLDbfTi5lEV9hzP7.svg)](https://asciinema.org/a/828zsBE5jNcLDbfTi5lEV9hzP7)
+
+### JSON format
+
 [![asciicast](https://asciinema.org/a/WF2MQYmnCAhDdAPpuI2b0msEe.svg)](https://asciinema.org/a/WF2MQYmnCAhDdAPpuI2b0msEe)
 
-### Help  
+### Help
+
 [![asciicast](https://asciinema.org/a/PqJFng6xX6Y1Up8g8z7pugcSs.svg)](https://asciinema.org/a/PqJFng6xX6Y1Up8g8z7pugcSs)
