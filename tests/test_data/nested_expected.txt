@@ -1,0 +1,22 @@
+{
+    common: {
+        setting1: Value 1
+      - setting2: 200
+        setting3: true
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: [1, 2, 3]
+              + wow: so much
+            }
+            key: value
+        }
+    }
+  - setting4: blah blah
+  - setting5: {
+        key5: value5
+    }
+}
